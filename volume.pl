@@ -27,6 +27,8 @@ my $debug = 0;
 my $win_h = 69;
 my $win_w = 62;
 
+Audio::Mixer::set_mixer_dev("/dev/mixer");
+
 my $ret = Audio::Mixer::init_mixer();
 die("Can't open sound mixer...") if $ret;
 

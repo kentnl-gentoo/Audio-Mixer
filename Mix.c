@@ -30,12 +30,26 @@ const char * dname[] = SOUND_DEVICE_NAMES;
 
 static int devmask, stereod, mixer_fd = -1, init_flag = 0;
 
+static char dev_fname[BUFSIZE] = "";
+
+int
+set_mixer_dev(char *fname) {
+#ifdef DEBUG
+  fprintf(stderr, "set_mixer_dev(%s)\n", fname);
+#endif
+  strncpy(dev_fname, fname, BUFSIZE-1);
+  return(0);
+}
+
 int
 open_mixer() {
 #ifdef DEBUG
   fprintf(stderr, "open_mixer()\n");
 #endif
-  if ((mixer_fd = open(MIXER, O_RDWR)) < 0) {
+  if (dev_fname[0] == '\0') {
+    strncpy(dev_fname, MIXER, BUFSIZE-1);
+  }
+  if ((mixer_fd = open(dev_fname, O_RDWR)) < 0) {
     fprintf(stderr, "Error opening %s.", MIXER);
     return(-1);
   }

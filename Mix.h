@@ -28,3 +28,4 @@ int get_params_num();
 
 char *get_params_list();
 
+int set_mixer_dev(char *fname);

@@ -128,6 +128,11 @@ Parameters:
       will be equal to lcval)
 Returns: 0 if Ok, -1 if failed
 
+set_mixer_dev(fname) - Set mixer device name (optional),
+    /dev/mixer is used by default
+    fname - device name
+Returns: 0 if Ok
+    
 init_mixer() - Initialize mixer (open it)
     set_cval() / get_cval() opens / closes the mixer each
     time they called unless init_mixer() called before.

@@ -127,3 +127,8 @@ get_params_list()
    OUTPUT:
      RETVAL
 
+int
+set_mixer_dev(fname)
+     char *		fname
+   OUTPUT:
+     RETVAL
