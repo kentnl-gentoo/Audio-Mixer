@@ -11,8 +11,8 @@ package Audio::Mixer;
 #
 # Subject to terms of GNU General Public License (www.gnu.org)
 #
-# Last update: $Date: 2001/03/20 00:20:50 $ by $Author: sergey $
-# Revision: $Revision: 1.3 $
+# Last update: $Date: 2002/04/30 00:48:21 $ by $Author: sergey $
+# Revision: $Revision: 1.4 $
 
 use strict;
 use Carp;
@@ -30,7 +30,7 @@ require AutoLoader;
 @EXPORT_OK = qw(
 	MIXER
 );
-$VERSION = '0.3';
+$VERSION = '0.4';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()

@@ -3,3 +3,5 @@ Revision history for Perl extension Mixer.
 0.01  Wed Mar 14 18:32:54 2001
 	- original version; created by h2xs 1.19
 
+0.4   Mon Apr 29 20:46:35 2002
+	- bug  with close_mixer9) is fixed.

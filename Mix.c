@@ -10,8 +10,8 @@
  *
  * Subject to terms of GNU General Public License (www.gnu.org)
  *
- * Last update: $Date: 2001/03/20 00:20:50 $ by $Author: sergey $
- * Revision: $Revision: 1.4 $
+ * Last update: $Date: 2002/04/30 00:48:21 $ by $Author: sergey $
+ * Revision: $Revision: 1.5 $
  *
  */
 #include <stdio.h>
@@ -55,7 +55,7 @@ open_mixer() {
   return(0);
 }
 
-void
+int
 close_mixer() {
 #ifdef DEBUG
   fprintf(stderr, "close_mixer()\n");
@@ -64,6 +64,7 @@ close_mixer() {
   close(mixer_fd);
   init_flag = 0;
   mixer_fd = -1;
+  return(0);
 }
 
 /*

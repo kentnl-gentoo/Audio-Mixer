@@ -113,6 +113,11 @@ init_mixer()
      RETVAL
 
 int
+close_mixer()
+   OUTPUT:
+     RETVAL
+
+int
 get_params_num()
    OUTPUT:
      RETVAL

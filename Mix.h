@@ -10,8 +10,8 @@
  *
  * Subject to terms of GNU General Public License (www.gnu.org) 
  *
- * Last update: $Date: 2001/03/19 16:56:47 $ by $Author: sergey $
- * Revision: $Revision: 1.2 $
+ * Last update: $Date: 2002/04/30 00:48:21 $ by $Author: sergey $
+ * Revision: $Revision: 1.3 $
  *
  */
 
@@ -22,6 +22,7 @@ int get_param_val(char *cntrl);
 int set_param_val(char *cntrl, int lcval, int rcval);
 
 int init_mixer();
+int close_mixer();
 
 int get_params_num();
 
