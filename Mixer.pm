@@ -30,7 +30,7 @@ require AutoLoader;
 @EXPORT_OK = qw(
 	MIXER
 );
-$VERSION = '0.6';
+$VERSION = '0.7';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -127,6 +127,15 @@ Parameters:
     rcval - right channel value (optional, if not supplied
       will be equal to lcval)
 Returns: 0 if Ok, -1 if failed
+
+set_source(cntrl) - set record source
+Parameters:
+    cntrl - name of channel to record from
+Returns: 0 if Ok, -1 if failed
+
+get_source(cntrl) - get record source
+Returns:
+    name of channel to record from
 
 set_mixer_dev(fname) - Set mixer device name (optional),
     /dev/mixer is used by default

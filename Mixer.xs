@@ -132,3 +132,16 @@ set_mixer_dev(fname)
      char *		fname
    OUTPUT:
      RETVAL
+
+
+char *
+get_source()
+   OUTPUT:
+     RETVAL
+
+int
+set_source(cntrl)
+     char *		cntrl
+   OUTPUT:
+     RETVAL
+

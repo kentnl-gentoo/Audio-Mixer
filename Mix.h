@@ -29,3 +29,8 @@ int get_params_num();
 char *get_params_list();
 
 int set_mixer_dev(char *fname);
+
+char *get_source();
+
+int set_source(char *cntrl);
+

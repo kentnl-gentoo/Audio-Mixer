@@ -28,7 +28,7 @@
 
 const char * dname[] = SOUND_DEVICE_NAMES;
 
-static int devmask, stereod, mixer_fd = -1, init_flag = 0;
+static int devmask, stereod, recmask, mixer_fd = -1, init_flag = 0;
 
 static char dev_fname[BUFSIZE] = "";
 
@@ -60,6 +60,10 @@ open_mixer() {
   if (ioctl(mixer_fd, SOUND_MIXER_READ_STEREODEVS, &stereod) == -1) {
     perror("SOUND_MIXER_READ_STEREODEVS");
     return(-1);
+  }
+  if (ioctl(mixer_fd, SOUND_MIXER_READ_RECMASK, &recmask) == -1) {
+	  perror("SOUND_MIXER_READ_RECMASK");
+	  return(-1);
   }
 
   if (!devmask) {
@@ -130,6 +134,76 @@ get_param_val(char *cntrl) {
   if (!init_flag)
     close_mixer();
   return(-1);
+}
+
+
+char *
+get_source()
+{
+	int j;
+	unsigned int source = 0;
+	if (!init_flag){
+		if (open_mixer())
+			return("");
+	}
+	if (-1 == ioctl(mixer_fd, SOUND_MIXER_READ_RECSRC, &source)){
+		perror("MIXER_READ_RECSRC");
+		if (!init_flag)
+			close_mixer();
+		return("");
+	}
+	if (!init_flag)
+		close_mixer();
+	source &= recmask;
+	for (j = 0; source; source >>= 1, j++){
+		if (source & 1)
+			return((char *) dname[j]);
+	}
+	return("");
+}
+
+int
+set_source(char *cntrl)
+{
+	int i, d, len, ret = 0;
+
+#ifdef DEBUG
+	fprintf(stderr, "set_recsrc(%s)\n", cntrl);
+#endif
+
+	if (!init_flag) {
+		if (open_mixer()) {
+			return(-1);
+		}
+	}
+	len = strlen(cntrl);
+	for (i = 0; i < SOUND_MIXER_NRDEVICES; i++) {
+		d = (1 << i);
+		if ((0 == strncmp(dname[i], cntrl, len)) &&
+			(0 != (recmask & d))) {
+			if (-1 == ioctl(mixer_fd, SOUND_MIXER_WRITE_RECSRC, &d)) {
+				perror("MIXER_WRITE_RECSRC");
+				if (!init_flag)
+					close_mixer();
+				return(-1);
+			}
+			else {
+				if (!init_flag)
+					close_mixer();
+				return(0);
+			}
+		}
+	}
+	d = 0;
+	if (-1 == ioctl(mixer_fd, SOUND_MIXER_WRITE_RECSRC, &d)) {
+		perror("MIXER_WRITE_RECSRC");
+		if (!init_flag)
+			close_mixer();
+		return(-1);
+	}
+	if (!init_flag)
+		close_mixer();
+	return(0);
 }
 
 /*
