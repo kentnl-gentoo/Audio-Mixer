@@ -9,4 +9,6 @@ WriteMakefile(
     'INC'	=> '',     # e.g., '-I/usr/include/other' 
      clean     => {'FILES' => 'Mix.o'},
     'MYEXTLIB' => 'Mix.o', 
+    AUTHOR => "Sergey Gribov <sergey@sergey.com>",
+    ABSTRACT_FROM => "Mixer.pm",
 );

@@ -30,7 +30,7 @@ require AutoLoader;
 @EXPORT_OK = qw(
 	MIXER
 );
-$VERSION = '0.4';
+$VERSION = '0.6';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -171,6 +171,8 @@ Returns: 0 if Ok, -1 if failed
 =head1 AUTHOR
 
 Sergey Gribov, sergey@sergey.com
+
+=head1 LICENSE
 
 Copyright (c) 2001 Sergey Gribov. All rights
 reserved.  This program is free software; you can
