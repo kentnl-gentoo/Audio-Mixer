@@ -6,5 +6,5 @@ Mix.h
 Mixer.pm
 Mixer.xs
 test.pl
-volume.pl
+eg/volume.pl
 README
