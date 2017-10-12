@@ -5,6 +5,6 @@ Mix.c
 Mix.h
 Mixer.pm
 Mixer.xs
-test.pl
+t/basic.t
 eg/volume.pl
 README
